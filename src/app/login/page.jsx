@@ -41,6 +41,22 @@ export default function LoginPage() {
     }
   };
 
+  const handleTestLogin = async () => {
+    const testEmail = "admin@edufinder.com";
+    const testPassword = "123456";
+
+    setEmail(testEmail);
+    setPassword(testPassword);
+
+    try {
+      await loginUser(testEmail, testPassword);
+      Swal.fire("Success", "Logged in as Test Admin!", "success");
+      router.push("/");
+    } catch (err) {
+      Swal.fire("Oops!", err.message || "Test login failed", "error");
+    }
+  };
+
   return (
     <div className="min-h-screen mt-10 flex items-center justify-center bg-base-100 px-4">
       <motion.div
@@ -111,7 +127,6 @@ export default function LoginPage() {
         </form>
         <SocialLogin />
 
-
         <div className="text-center text-sm space-y-1">
           <p>
             Don’t have an account?{" "}
@@ -129,6 +144,15 @@ export default function LoginPage() {
               Reset
             </button>
           </p>
+          <div className="text-center">
+          <button
+            type="button"
+            className="btn btn-outline w-full btn-dash mt-2"
+            onClick={handleTestLogin}
+          >
+             Test Login 
+          </button>
+        </div>
         </div>
       </motion.div>
     </div>

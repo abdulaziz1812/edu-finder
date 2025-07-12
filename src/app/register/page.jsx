@@ -35,21 +35,23 @@ export default function RegisterPage() {
           body: imageForm,
         }
       );
-
       const imgData = await imgRes.json();
       const photoURL = imgData?.data?.url;
       if (!photoURL) throw new Error("Image upload failed");
 
       const userCredential = await registerUser(email, password);
-      await updateProfile(userCredential.user, {
+      const firebaseUser = userCredential.user;
+
+      await updateProfile(firebaseUser, {
         displayName: name,
         photoURL,
       });
 
       const userInfo = {
+        uid: firebaseUser.uid, 
         name,
         email,
-        photo: photoURL,
+        photoURL,
         createdAt: new Date(),
       };
 
@@ -65,7 +67,7 @@ export default function RegisterPage() {
         text: "You can now login.",
         confirmButtonColor: "#3b82f6",
       }).then(() => {
-        router.push("/login");
+        router.push("/");
       });
     } catch (err) {
       console.error(err);
@@ -81,7 +83,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-100 px-4">
       <motion.div
-        className="max-w-md w-full p-8 bg-white shadow-xl rounded-xl space-y-6 border border-gray-200 hover:shadow-2xl transition-shadow duration-300  "
+        className="max-w-md w-full p-8 bg-white shadow-xl rounded-xl space-y-6 border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
