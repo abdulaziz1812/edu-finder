@@ -1,0 +1,32 @@
+{
+  "name": "college-booking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "firebase": "^11.10.0",
+    "framer-motion": "^12.23.3",
+    "mongoose": "^8.16.3",
+    "next": "15.3.5",
+    "next-auth": "^4.24.11",
+    "postcss": "^8.5.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-responsive-masonry": "^2.7.1",
+    "sweetalert2": "^11.22.2",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.11",
+    "daisyui": "^5.0.46",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.5",
+    "tailwindcss": "^4.1.11"
+  }
+}
